@@ -43,16 +43,16 @@ Game.prototype.startLoop(){
 Game.prototype.checkCollisions{
 }
 
-Game.prototype.CheckIfFullLine{
+Game.prototype.defineGoodOrbadNotes(){
 }
 
-Game.prototype.updateLevel{
+Game.prototype.calculatePoints(){
 }
 
-Game.prototype.checkOverFlow = function(){
+Game.prototype.createPlayer(){
 }
 
-Game.prototype.displayNextSquare{
+Game.prototype.updateLevel(){
 }
 
 Game.prototype.clearCanvas = function(){
@@ -65,6 +65,8 @@ Game.prototype.drawCanvas = function(){
 }
 
 Game.prototype.setGameOver = function(){
+}
+
 }
 ```
 
@@ -89,8 +91,6 @@ Character.prototype.setDirection(){
 Character.prototype.goDown(){
 }
 
-Character.prototype.rush(){
-}
 
 ```
 
