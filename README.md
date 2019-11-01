@@ -11,7 +11,8 @@ every collision with the player and a note will increase or decrease points and 
 ## Backlog
 - visual Piano that colors the current played key.
 - Timing the keys to play within a fixed BPM
-- adding all the notes that were collected on the side.
+- Adding all the notes that were collected on the side.
+- Get username and create leaderboard
 
 
 
@@ -43,16 +44,19 @@ Game.prototype.startLoop(){
 Game.prototype.checkCollisions{
 }
 
-Game.prototype.CheckIfFullLine{
+Game.prototype.defineGoodOrbadNotes(){
 }
 
-Game.prototype.updateLevel{
+Game.prototype.calculatePoints(){
 }
 
-Game.prototype.checkOverFlow = function(){
+Game.prototype.createPlayer(){
 }
 
-Game.prototype.displayNextSquare{
+Game.prototype.createNotes(){
+}
+
+Game.prototype.updateLevel(){
 }
 
 Game.prototype.clearCanvas = function(){
@@ -65,6 +69,8 @@ Game.prototype.drawCanvas = function(){
 }
 
 Game.prototype.setGameOver = function(){
+}
+
 }
 ```
 
@@ -89,28 +95,11 @@ Character.prototype.setDirection(){
 Character.prototype.goDown(){
 }
 
-Character.prototype.rush(){
-}
-
-```
-
-### staticSquare.js
-```
-StaticSquare(){
-  this.camvas;
-  this.x;
-  this.y;
-  this.size;
-  this.color;
-}
-
-StaticSquare.prototype.draw{
-}
 
 ```
 
 
-## States y States Transitions
+## States & States Transitions
 ```
 - splashScreen()
   - buildSplash()
@@ -139,30 +128,26 @@ StaticSquare.prototype.draw{
 - Game - drawCanvas
 - Game - setGameOver
 - Game - collision
+- Game - update score
 - Game - addEventListener
-- movingSquare - create
-- movingSquare - goDown
-- staticSquare - store
-- staticSquare - remove if full line
-- Game - checkOverFlow
-- movingSquare - setDirection
-- movingSquare - Rush
-- movingSquare - SelectRandomSize
+- notes - create
+- notes - goDown
+- notes - SelectRandomSize
+- notes - check if a collision was made
+- notes - check if note is in scale or not
+
 
 
 ## Links
 
 
 ### Trello
-[Link url](https://trello.com/b/O2Molfl5/tetris)
+https://trello.com/b/TmPvhrho/musical-scales
 
 
 ### Git
-URls for the project repo and deploy
-[Link Repo](https://github.com/chloeleteinturier/Tetris)
-[Link Deploy](https://chloeleteinturier.github.io/Square-Tetris/)
+
 
 
 ### Slides
-URls for the project presentation (slides)
-[Link Slides.com](https://docs.google.com/presentation/d/12aWbkPZlli7qyOwh-r7aFmeflMeICDQl4ZWgLbv21e8/edit?usp=sharing)
+
