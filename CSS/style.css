@@ -78,3 +78,7 @@ html {
   .game .canvas-container {
     flex: 1;
   }
+
+  canvas {
+      background-color: rgba(54, 39, 39, 0.438);
+  }

@@ -1,48 +1,60 @@
 'use strict';
 
-function buildDom(htmlString){
-    var div = document.createElement('div');
+function buildDom(htmlString) {
+    const div = document.createElement('div');
     div.innerHTML = htmlString;
+  
     return div.children[0];
-}
-
-function main() {
-    var game; // instance of the Game
-    var splashScreen; // Start Screen
-    var gameOverScreen;
+  }
   
-      
-    // -- splash screen
+  function main() {
+    var splashScreen;
   
-    function createSplashScreen() {};
+    function createSplashScreen() {
+      splashScreen = buildDom(`
+       <main>
+        <h1>Game Title</h1>
+        <button>Start Game</button>
+       </main>
+      `);
   
-    function removeSplashScreen() {};
+      document.body.appendChild(splashScreen);
   
-      
-    // -- game screen
+      var startButton = splashScreen.querySelector('button');
+      startButton.addEventListener('click', function() {
+        startGame();
+      });
+    }
   
-    function createGameScreen() {};
+    function removeSplashScreen() {
+      splashScreen.remove();
+    }
   
-    function removeGameScreen() {};
+    function createGameScreen() {
+      var gameScreen = buildDom(`
+        <main class="game">
+          <span>Score: </span><span id="score">0</span>
+          <section class="canvas-container">
+            <canvas></canvas>
+          </section>
+        </main>
+     `);
   
-      
-    // -- game over screen
+      document.body.appendChild(gameScreen);
   
-    function createGameOverScreen(score) {};
+      return gameScreen;
+    }
   
-    function removeGameOverScreen() {};
+    function startGame() {
+      removeSplashScreen();
   
-      
-    // -- Setting the game state 
+      var game = new Game();
+      game.gameScreen = createGameScreen();
   
-    function startGame() {};
+      game.start();
+    }
   
-    function gameOver() {};
-  
-      
-    // -- initialize Splash screen on initial start
     createSplashScreen();
   }
   
-  // Runs the function `main` once all resources are loaded
-  window.addEventListener('load', main);
+  window.onload = main;
