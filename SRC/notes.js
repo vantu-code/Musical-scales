@@ -39,7 +39,64 @@ var fSharpMinor = aMajor;
 var gMinor = aSharpMajor;
 var gSharpMinor = bMajor;
 
+var cNote = document.getElementById("c");
+var cSharpNote = document.getElementById("c#");
+var dNote = document.getElementById("d");
+var dSharpNote = document.getElementById("d#");
+var eNote = document.getElementById("e");
+var fNote = document.getElementById("f");
+var fSharpNote = document.getElementById("f#");
+var gNote = document.getElementById("g");
+var gSharpNote = document.getElementById("g#");
+var aNote = document.getElementById("a");
+var aSharpNote = document.getElementById("a#");
+var bNote = document.getElementById("b");
 
+function playAudio(note) {
+    console.log(`note is' + ${note.key}`);
+    // cNote.play();
+    switch (note.key) {
+        case "c":
+            cNote.play();
+        break;
+        case "c#":
+            cSharpNote.play();
+        break;
+        case "d":
+        dNote.play();
+        break;
+        case "d#":
+        dSharpNote.play();
+        break;
+        case "e":
+        eNote.play();
+         break;
+         case "f":
+         fNote.play();
+        break;
+        case "f#":
+         fSharpNote.play();
+        break;
+        case "g":
+         gNote.play();
+        break;
+        case "g#":
+         gSharpNote.play();
+        break;
+        case "a":
+         aNote.play();
+        break;
+        case "a#":
+         aSharpNote.play();
+        break;
+        case "b":
+         bNote.play();
+        break;
+        default:
+            console.log('none of them');
+            break;
+}
+}
 
 
 

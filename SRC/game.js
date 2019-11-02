@@ -57,7 +57,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
     var loop = function() {
 
 
-        if ((Math.random() > 0.98) && (Math.random() > 0.7)) {
+        if ((Math.random() > 0.9)) {
             var randomX = this.canvas.width * Math.random();
             this.notes.push(new Note(this.canvas, randomX, 3));
         }
@@ -112,6 +112,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
             //here should be inserted the right scale in gamestart
               this.calculatePoints(cMajor, note);
               note.y = this.canvas.height + note.size;
+              playAudio(note);
               console.log(note.key);
               
                 console.log(`score is ${this.score}`);
