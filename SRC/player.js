@@ -43,10 +43,12 @@ if ((crossRight || crossLeft) && (crossBottom || crossTop)) {
   Player.prototype.handleScreenCollision = function (){
       if (this.x < 0){
           this.x = 0;
+          document.getElementById("touch-wall-left").volume = 0.7;
           document.getElementById("touch-wall-left").play();
       }
       if (this.x + this.size > this.canvas.width){
           this.x = this.canvas.width - this.size;
+          document.getElementById("touch-wall-right").volume = 0.7;
           document.getElementById("touch-wall-right").play();
       }
   }

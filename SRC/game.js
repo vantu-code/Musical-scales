@@ -51,6 +51,7 @@ if (event.key == ' '){
     console.log('spaceeeee');
     this.shootBall();
     document.getElementById("shoot").currentTime = 0;
+    document.getElementById("shoot").volume = 0.2;
     document.getElementById("shoot").play();
     }
 //console.log(event.key, this.player.x);

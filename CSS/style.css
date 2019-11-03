@@ -82,11 +82,18 @@ html {
   }
 
   canvas {
-      background-color: rgb(53, 114, 99);
-      background-position: center;
-      background-size: cover;
+      //background-color: rgb(53, 114, 99);
+      //background-position: center;
+      //background-size: cover;
       height: 700px;
+      //background-repeat: no-repeat;
+
+      background-image: url("https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
+      
+      background-position: center; 
       background-repeat: no-repeat;
+      background-size: cover;
+      padding: 0 7px;
   }
 
   #splash{
@@ -123,9 +130,9 @@ html {
   }
   h4 {
 font-size: 1em;
-margin-bottom: -6px;
-background-color: rgba(128, 128, 128, 0.24);
-margin: 0 440px;
+margin-bottom: -0px;
+color: gray;
+//background-color: rgba(128, 128, 128, 0.24);
   }
   h2 {
     font-size: 0.9em;
