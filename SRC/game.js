@@ -15,6 +15,10 @@ function Game() {
     this.scale = cMajor;
    // this.direction = 1;
   }
+
+
+
+
   //var that = this;
 
   Game.prototype.start = function() {
@@ -22,6 +26,7 @@ function Game() {
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = document.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
+    
   
     // Set the canvas to be same as the viewport size
     this.containerWidth = this.canvasContainer.offsetWidth;
