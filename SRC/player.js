@@ -3,7 +3,6 @@
 function Player(canvas) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-  
     this.size = 100;
     this.x = canvas.width / 2;
     this.y = canvas.height -100;
@@ -42,10 +41,12 @@ if ((crossRight || crossLeft) && (crossBottom || crossTop)) {
 
 
   Player.prototype.handleScreenCollision = function (){
-      if (this.x <= 0){
+      if (this.x < 0){
           this.x = 0;
+          document.getElementById("touch-wall-left").play();
       }
-      if (this.x + this.size >= this.canvas.width){
+      if (this.x + this.size > this.canvas.width){
           this.x = this.canvas.width - this.size;
+          document.getElementById("touch-wall-right").play();
       }
   }

@@ -12,9 +12,8 @@ function Shoot(canvas, speed, x) {
 }
 
 
-//var spaceBar = 
 Shoot.prototype.didCollide = function(note){
-    //   console.log('didCollide func');
+      console.log('didCollide func');
 var shootLeft = this.x;
 var shootRight = this.x + this.size;
 var shootTop = this.y;

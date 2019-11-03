@@ -22,7 +22,9 @@ function buildDom(htmlString) {
   
       var startButton = splashScreen.querySelector('button');
       startButton.addEventListener('click', function() {
+        document.getElementById("button-click").play();
         startGame();
+        
       });
     }
   
@@ -61,3 +63,9 @@ function buildDom(htmlString) {
   }
   
   window.onload = main;
+
+  function gameOver(score) {
+                      
+    removeGameScreen();
+    createGameOverScreen();
+  }

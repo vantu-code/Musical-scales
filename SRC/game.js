@@ -12,6 +12,7 @@ function Game() {
     this.notes = [];
     this.shoots = [];
     this.lives = 3;
+    this.scale = cMajor;
    // this.direction = 1;
   }
   //var that = this;
@@ -143,12 +144,12 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
 
             //++++++++++++++++++++++++++++++
             //here should be inserted the right scale in gamestart
-              this.calculatePoints(cMajor, note);
+              this.calculatePoints(this.scale, note);
               note.y = this.canvas.height + note.size;
               playAudio(note);
               console.log(note.key);
               
-                console.log(`score is ${this.score} and ${this.lives} lives`);
+               // console.log(`score is ${this.score} and ${this.lives} lives`);
               if (this.player.lives === 0){
                   this.gameOver();
               }
@@ -191,6 +192,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
     else {
         this.lives --;
         document.getElementById('lives').innerHTML = this.lives;
+        
     }
 
     //console.log(count);
@@ -201,7 +203,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
 Game.prototype.passGameOverCallback = function(callback) {
     this.onGameOverCallback = callback;
   };
-  Game.prototype,gameOver = function(){
+  Game.prototype.gameOver = function(){
       this.gameIsOver = true;
       this.onGameOverCallback();
   };
