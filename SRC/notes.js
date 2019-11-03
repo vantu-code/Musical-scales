@@ -57,40 +57,52 @@ function playAudio(note) {
     // cNote.play();
     switch (note.key) {
         case "c":
-            cNote.play();
+        cNote.currentTime = 0;
+        cNote.play();
         break;
         case "c#":
-            cSharpNote.play();
+        cSharpNote.currentTime = 0;
+        cSharpNote.play();
         break;
         case "d":
+        dNote.currentTime = 0;
         dNote.play();
         break;
         case "d#":
+        dSharpNote.currentTime = 0;
         dSharpNote.play();
         break;
         case "e":
+        eNote.currentTime = 0;
         eNote.play();
-         break;
-         case "f":
-         fNote.play();
+        break;
+        case "f":
+        fNote.currentTime = 0;
+        fNote.play();
         break;
         case "f#":
-         fSharpNote.play();
+        fSharpNote.currentTime = 0;
+        fSharpNote.play();
         break;
         case "g":
-         gNote.play();
+        gNote.currentTime = 0;
+        gNote.play();
         break;
         case "g#":
-         gSharpNote.play();
+        gSharpNote.currentTime = 0;
+        gSharpNote.play();
         break;
         case "a":
-         aNote.play();
+        aNote.currentTime = 0;
+        aNote.play();
         break;
         case "a#":
-         aSharpNote.play();
+        aSharpNote.currentTime = 0;
+        aSharpNote.play();
         break;
         case "b":
-         bNote.play();
+        bNote.currentTime = 0;
+        bNote.play();
         break;
         default:
             console.log('none of them');

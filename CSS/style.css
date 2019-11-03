@@ -56,7 +56,9 @@ html {
   .game header {
     height: 50px;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
   }
   
   .game .lives {
@@ -80,5 +82,28 @@ html {
   }
 
   canvas {
-      background-color: rgba(54, 39, 39, 0.438);
+      background-color: rgb(53, 114, 99);
+      background-position: center;
+      background-size: cover;
+      height: 700px;
+      background-repeat: no-repeat;
+  }
+
+  #splash{
+      color: white;
+      text-align: center;
+      padding-top: 300px;
+      background-color: gray;
+      height: 800px;
+
+      background-image: url("https://image.freepik.com/free-photo/top-view-headphones-blue-background_11358-1473.jpg"); 
+      background-position: center; 
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  #splash button{
+      background-color: black;
+      color: white;
+      height: 50px;
+      width: 100px;
   }

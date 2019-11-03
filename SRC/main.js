@@ -12,8 +12,8 @@ function buildDom(htmlString) {
   
     function createSplashScreen() {
       splashScreen = buildDom(`
-       <main>
-        <h1>Game Title</h1>
+       <main id="splash">
+        <h1>Musical Scales</h1>
         <button>Start Game</button>
        </main>
       `);
@@ -33,7 +33,10 @@ function buildDom(htmlString) {
     function createGameScreen() {
       var gameScreen = buildDom(`
         <main class="game">
+        <div id="headline">
           <span>Score: </span><span id="score">0</span>
+          <span>Lives: </span><span id="lives">3</span>
+        </div>
           <section class="canvas-container">
             <canvas></canvas>
           </section>
