@@ -1,6 +1,6 @@
 'use strict';
 
-function Game() {
+function Game(scaleFromFunc) {
     this.canvas = null;
     this.ctx = null;
     this.enemies = [];
@@ -12,7 +12,7 @@ function Game() {
     this.notes = [];
     this.shoots = [];
     this.lives = 3;
-    this.scale = cMajor;
+    this.scale = scaleFromFunc;
    // this.direction = 1;
   }
 

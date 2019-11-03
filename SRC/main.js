@@ -14,6 +14,7 @@ function buildDom(htmlString) {
       splashScreen = buildDom(`
        <main id="splash">
         <h1>Musical Scales</h1>
+        <h4>Select a scale</h4>
         <div id="two-select">
         <select name="select-scale" id="select-scale">
 
@@ -32,12 +33,12 @@ function buildDom(htmlString) {
     </select>
 
     <select name="major-minor" id="major-minor">
-    <h2>Select scale<h2>
+    <h4>Select scale<h4>
     <option value="major">Major</option>
     <option value="minor">Minor</option>
     </select>
     </div>
-        <button>Start Game</button>
+        <button><h2>Start Game</h2></button>
        </main>
       `);
   
@@ -53,60 +54,98 @@ function buildDom(htmlString) {
         document.getElementById("button-click").play();
         selectScale(scaleList, majorMinor);
         startGame();
-       
+       //console.log((this.game.scale).bind(this));
         
       });
     }
 
-
+    var findScale = '';
     function selectScale (a,b){
-        var findScale = '';
-        switch (a) {
-            case "c":
-            findScale = 'c';
-            break;
-            case "c#":
-            findScale = 'cSharp';
-            break;
-            case "d":
-            findScale = 'd';
-            break;
-            case "d#":
-            findScale = 'dSharp';
-            break;
-            case "e":
-            findScale = 'e';
-            break;
-            case "f":
-            findScale = 'f';
-            break;
-            case "f#":
-            findScale = 'fSharp';
-            break;
-            case "g":
-            findScale = 'g';
-            break;
-            case "g#":
-            findScale = 'gSharp';
-            break;
-            case "a":
-            findScale = 'a';
-            break;
-            case "a#":
-            findScale = 'aSharp';
-            break;
-            case "b":
-            findScale = 'b';
-            break;
-            default:
-    break;
-        }
+        
         switch (b) {
             case "major":
-            findScale += 'Major';
+                    switch (a) {
+                        case "c":
+                        findScale = cMajor;
+                        break;
+                        case "c#":
+                        findScale = cSharpMajor;
+                        break;
+                        case "d":
+                        findScale = dMajor;
+                        break;
+                        case "d#":
+                        findScale = dSharpMajor;
+                        break;
+                        case "e":
+                        findScale = eMajor;
+                        break;
+                        case "f":
+                        findScale = fMajor;
+                        break;
+                        case "f#":
+                        findScale = fSharpMajor;
+                        break;
+                        case "g":
+                        findScale = gMajor;
+                        break;
+                        case "g#":
+                        findScale = gSharpMajor;
+                        break;
+                        case "a":
+                        findScale = aMajor;
+                        break;
+                        case "a#":
+                        findScale = aSharpMajor;
+                        break;
+                        case "b":
+                        findScale = bMajor;
+                        break;
+                        default:
+                break;
+                    }
             break;
             case "minor":
-            findScale += 'Minor';
+                    switch (a) {
+                        case "c":
+                        findScale = cMinor;
+                        break;
+                        case "c#":
+                        findScale = cSharpMinor;
+                        break;
+                        case "d":
+                        findScale = dMinor;
+                        break;
+                        case "d#":
+                        findScale = dSharpMinor;
+                        break;
+                        case "e":
+                        findScale = eMinor;
+                        break;
+                        case "f":
+                        findScale = fMinor;
+                        break;
+                        case "f#":
+                        findScale = fSharpMinor;
+                        break;
+                        case "g":
+                        findScale = gMinor;
+                        break;
+                        case "g#":
+                        findScale = gSharpMinor;
+                        break;
+                        case "a":
+                        findScale = aMinor;
+                        break;
+                        case "a#":
+                        findScale = aSharpMinor;
+                        break;
+                        case "b":
+                        findScale = bMinor;
+                        break;
+                        default:
+                break;
+                    }
             break;
             default:
     break;
@@ -114,7 +153,7 @@ function buildDom(htmlString) {
     console.log(findScale);
     }
 
-
+//console.log(this.game.scale);
 
 
 
@@ -129,8 +168,10 @@ function buildDom(htmlString) {
       var gameScreen = buildDom(`
         <main class="game">
         <div id="headline">
-          <span>Score: </span><span id="score">0</span>
-          <span>Lives: </span><span id="lives">3</span>
+          <div><span>Score: </span><span id="score">0</span></div>
+          <div><span>  Lives: </span><span id="lives">3</span></div>
+          <div><span>  Scale: </span><span id="scale">c Major</span></div>
+          <span> </span><span id="allowed"></span>
         </div>
           <section class="canvas-container">
             <canvas></canvas>
@@ -139,14 +180,59 @@ function buildDom(htmlString) {
      `);
   
       document.body.appendChild(gameScreen);
-  
+      // allowed notes? 
+      //document.getElementById('allowed').innerHTML = findScale;
+      var nameOfScale = '';
+      switch (findScale) {
+          case cMajor:
+                nameOfScale = 'C / Am';
+          break;
+          case cSharpMajor:
+                nameOfScale = 'C# / A#m';
+          break;
+          case dMajor:
+                nameOfScale = 'D / Bm';
+          break;
+          case dSharpMajor:
+                nameOfScale = 'D# / Cm';
+          break;
+          case eMajor:
+                nameOfScale = 'E / C#m';
+          break;
+          case fMajor:
+                nameOfScale = 'F / Dm';
+          break;
+          case fSharpMajor:
+                nameOfScale = 'F# / D#m';
+          break;
+          case gMajor:
+                nameOfScale = 'G / Em';
+          break;
+          case gSharpMajor:
+                nameOfScale = 'G# / Fm';
+          break;
+          case aMajor:
+                nameOfScale = 'A / F#m';
+          break;
+          case aSharpMajor:
+                nameOfScale = 'A# / Gm';
+          break;
+          case bMajor:
+                nameOfScale = 'B / G#m';
+          break;
+      }
+      document.getElementById('scale').innerHTML = nameOfScale;
+
+        
+      
       return gameScreen;
     }
+    
   
     function startGame() {
       removeSplashScreen();
   
-      var game = new Game();
+      var game = new Game(findScale);
       game.gameScreen = createGameScreen();
   
       game.start();
