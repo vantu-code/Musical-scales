@@ -14,7 +14,11 @@ function Game(scaleFromFunc) {
     this.lives = 3;
     this.scale = scaleFromFunc;
     this.speed = 20;
+    this.countFrames = 0;
+    this.countSeconds = 0;
+    this.countBack = 50;
    // this.direction = 1;
+
   }
 
 
@@ -88,7 +92,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
 
 
         if ((Math.random() > 0.98)) {
-            var randomX = this.canvas.width * Math.random();
+            var randomX = (this.canvas.width - 30) * Math.random();
             this.notes.push(new Note(this.canvas, randomX, 3));
         }
 
@@ -129,6 +133,9 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
             item.draw();
             
         });
+
+
+        
         // if (this.player.x > this.canvas.width) {
         //     this.direction = -1;
         // } else  if (this.player.x < 0){
@@ -145,6 +152,18 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
         
   
       //this.player.draw();
+      //------------------------------timer------------------------------
+
+      this.countFrames++;
+      this.countSeconds = Math.floor(this.countFrames/60);
+      this.countBack = 5 -  this.countSeconds;
+      document.getElementById('time').innerHTML = this.countBack;
+      if (this.countBack === 0){
+        this.gameOver(this.score);
+    }
+    
+
+
       if (!this.gameIsOver) {
       window.requestAnimationFrame(loop);
       }
@@ -165,7 +184,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
               
                // console.log(`score is ${this.score} and ${this.lives} lives`);
               if (this.player.lives === 0){
-                  this.gameOver();
+                  this.gameOver(this.score);
               }
           }
           this.shoots.forEach(function(shoot){
@@ -227,7 +246,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
         document.getElementById("wrong-note").play();
         document.getElementById('lives').innerHTML = this.lives;
         if (this.lives === 0){
-          this.gameOver();
+          this.gameOver(this.score);
       }
     }
 
@@ -246,3 +265,9 @@ Game.prototype.gameOver = function(){
 Game.prototype.removeGameScreen = function() {
     this.gameScreen.remove();
   };
+
+
+
+
+
+    

@@ -174,6 +174,7 @@ function buildDom(htmlString) {
           <div><span>  Lives: </span><span id="lives">3</span></div>
           <div><span>  Scale: </span><span id="scale">c Major</span></div>
           <div><span>  Speed: </span><span id="speed">20</span></div>
+          <div><span>  Time: </span><span id="time">50</span></div>
           <span> </span><span id="allowed"></span>
         </div>
           <section class="canvas-container">
@@ -252,10 +253,12 @@ function buildDom(htmlString) {
       gameOverScreen = buildDom(`
         <main>
           <h1>Game over</h1>
-          <p>Your score: <span></span></p>
+          <p>Your score: <span id="score"></span></p>
           <button>Restart</button>
       </main>
       `);
+      console.log(score);
+      //this.document.getElementById('score').innerHTML = score;
       var button = gameOverScreen.querySelector('button');
       button.addEventListener('click', startGame);
   
@@ -274,7 +277,7 @@ function buildDom(htmlString) {
     function gameOver(score) {
                       
       removeGameScreen();
-      createGameOverScreen();
+      createGameOverScreen(score);
     }
 
     createSplashScreen();

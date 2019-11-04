@@ -15,7 +15,7 @@ function Player(canvas) {
     //this.ctx.fillRect(this.x, this.y, this.size, this.size/4);
     var imageP = new Image();
     imageP.src = "./Images/player4.png"
-    this.ctx.drawImage(imageP, this.x, this.y, this.size, this.size);
+    this.ctx.drawImage(imageP, this.x, this.y, 73, 100);
     this.ctx.fill();
   };
 
