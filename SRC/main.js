@@ -9,6 +9,8 @@ function buildDom(htmlString) {
   
   function main() {
     var splashScreen;
+    var game;
+    var gameOverScreen;
   
     function createSplashScreen() {
       splashScreen = buildDom(`
@@ -229,23 +231,59 @@ function buildDom(htmlString) {
       return gameScreen;
     }
     
-  
+    function removeGameScreen() {
+      game.removeGameScreen();
+    }
+
     function startGame() {
       removeSplashScreen();
-  
-      var game = new Game(findScale);
+      removeGameOverScreen();
+      game = new Game(findScale);
       game.gameScreen = createGameScreen(game.speed);
-  
+      
       game.start();
+
+      game.passGameOverCallback(function() {
+            gameOver(game.score);
+          });
+    }
+
+    function createGameOverScreen(score) {
+      gameOverScreen = buildDom(`
+        <main>
+          <h1>Game over</h1>
+          <p>Your score: <span></span></p>
+          <button>Restart</button>
+      </main>
+      `);
+      var button = gameOverScreen.querySelector('button');
+      button.addEventListener('click', startGame);
+  
+      var span = gameOverScreen.querySelector('span');
+      span.innerText = score;
+  
+      document.body.appendChild(gameOverScreen);
+    }
+
+    function removeGameOverScreen() {
+      if (gameOverScreen) {
+        gameOverScreen.remove();
+      }
     }
   
+    function gameOver(score) {
+                      
+      removeGameScreen();
+      createGameOverScreen();
+    }
+
     createSplashScreen();
+
+   
+    
   }
   
   window.onload = main;
 
-  function gameOver(score) {
-                      
-    removeGameScreen();
-    createGameOverScreen();
-  }
+  
+

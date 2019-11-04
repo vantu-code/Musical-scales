@@ -79,6 +79,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
       //console.log('shoot function');
       var x = this.player.x + this.player.size/2;
     this.shoots.push(new Shoot(this.canvas, 10, x));
+    //console.log('shooooots    ', this.shoots);
 }
 //------------------------------------
 
@@ -225,7 +226,9 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
         document.getElementById("wrong-note").volume = 0.5;
         document.getElementById("wrong-note").play();
         document.getElementById('lives').innerHTML = this.lives;
-        
+        if (this.lives === 0){
+          this.gameOver();
+      }
     }
 
     //console.log(count);
@@ -236,10 +239,10 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
 Game.prototype.passGameOverCallback = function(callback) {
     this.onGameOverCallback = callback;
   };
-  Game.prototype.gameOver = function(){
+Game.prototype.gameOver = function(){
       this.gameIsOver = true;
       this.onGameOverCallback();
   };
-  Game.prototype.removeGameScreen = function() {
+Game.prototype.removeGameScreen = function() {
     this.gameScreen.remove();
   };
