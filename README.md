@@ -13,7 +13,8 @@ every collision with the player and a note will increase or decrease points and 
 - Timing the keys to play within a fixed BPM
 - Adding all the notes that were collected on the side.
 - Get username and create leaderboard
-
+- Leaderboard of scales and scores
+- Timer
 
 
 
