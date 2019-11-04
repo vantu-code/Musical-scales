@@ -119,7 +119,7 @@ Note.prototype.draw = function(){
 
     var image = new Image();
    //image.src = `/Images/Cstry.png`;
-    var arrOfSrc = ["./Images/c2.png","./Images/cs.png","./Images/d.png","./Images/ds.png","./Images/e.png","./Images/f.png","./Images/fs.png","./Images/g.png","./Images/gs.png","./Images/a.png","./Images/as.png","./Images/b.png"];
+    var arrOfSrc = ["./Images/c.png","./Images/cs.png","./Images/d.png","./Images/ds.png","./Images/e.png","./Images/f.png","./Images/fs.png","./Images/g.png","./Images/gs.png","./Images/a.png","./Images/as.png","./Images/b.png"];
     
     for (let i = 0; i <= allNotes.length; i++){
         if (this.key == allNotes[i]){
