@@ -5,14 +5,18 @@ function Player(canvas) {
     this.ctx = this.canvas.getContext('2d');
     this.size = 100;
     this.x = canvas.width / 2;
-    this.y = canvas.height -100;
+    this.y = canvas.height -150;
   }
   
 
   Player.prototype.draw = function() {
     this.ctx.fillStyle = '#FF69B4';
     // fillRect(x, y, width, height)
-    this.ctx.fillRect(this.x, this.y, this.size, this.size/4);
+    //this.ctx.fillRect(this.x, this.y, this.size, this.size/4);
+    var imageP = new Image();
+    imageP.src = "/Images/player2.png"
+    this.ctx.drawImage(imageP, this.x, this.y, this.size, this.size);
+    this.ctx.fill();
   };
 
 

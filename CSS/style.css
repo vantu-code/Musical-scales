@@ -85,7 +85,7 @@ html {
       //background-color: rgb(53, 114, 99);
       //background-position: center;
       //background-size: cover;
-      height: 700px;
+      height: 800px;
       //background-repeat: no-repeat;
 
       background-image: url("https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
@@ -129,7 +129,7 @@ html {
       margin: 0 50px;
   }
   h4 {
-font-size: 1em;
+font-size: 1.3em;
 margin-bottom: -0px;
 color: gray;
 //background-color: rgba(128, 128, 128, 0.24);

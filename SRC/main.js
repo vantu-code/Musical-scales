@@ -162,7 +162,7 @@ function buildDom(htmlString) {
       splashScreen.remove();
     }
   
-    function createGameScreen() {
+    function createGameScreen(speed) {
 
      
       var gameScreen = buildDom(`
@@ -171,6 +171,7 @@ function buildDom(htmlString) {
           <div><span>Score: </span><span id="score">0</span></div>
           <div><span>  Lives: </span><span id="lives">3</span></div>
           <div><span>  Scale: </span><span id="scale">c Major</span></div>
+          <div><span>  Speed: </span><span id="speed">20</span></div>
           <span> </span><span id="allowed"></span>
         </div>
           <section class="canvas-container">
@@ -233,7 +234,7 @@ function buildDom(htmlString) {
       removeSplashScreen();
   
       var game = new Game(findScale);
-      game.gameScreen = createGameScreen();
+      game.gameScreen = createGameScreen(game.speed);
   
       game.start();
     }

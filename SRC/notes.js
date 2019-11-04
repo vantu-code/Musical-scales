@@ -4,8 +4,8 @@ function Note(canvas, x, speed) {
     
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.size = Math.random() * 40;
-    this.key = allNotes[Math.floor(Math.random() * allNotes.length)]
+    this.size = Math.random() * 30 + 20 ;
+    this.key = allNotes[Math.floor(Math.random() * allNotes.length)];
     this.x = x;
     this.y = 0 - this.size;
     this.speed = speed;
@@ -116,9 +116,23 @@ function playAudio(note) {
 
 
 Note.prototype.draw = function(){
-this.ctx.fillStyle = '#303437';
 
-this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    var image = new Image();
+   //image.src = `/Images/Cstry.png`;
+    var arrOfSrc = ["/Images/c2.png","/Images/cs.png","/Images/d.png","/Images/ds.png","/Images/e.png","/Images/f.png","/Images/fs.png","/Images/g.png","/Images/gs.png","/Images/a.png","/Images/as.png","/Images/b.png"];
+    
+    for (let i = 0; i <= allNotes.length; i++){
+        if (this.key == allNotes[i]){
+            image.src = arrOfSrc[i];
+        }
+    }
+    
+    //console.log(this.key, allNotes); 
+    // = arrOfSrc[0];
+//this.ctx.fillStyle = '#303437';
+//this.ctx.src = "/Images/vinyl1.jpeg";
+this.ctx.drawImage(image, this.x, this.y, this.size, this.size);
+this.ctx.fill();
 
 };
 

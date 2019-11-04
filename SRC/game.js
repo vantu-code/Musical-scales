@@ -13,6 +13,7 @@ function Game(scaleFromFunc) {
     this.shoots = [];
     this.lives = 3;
     this.scale = scaleFromFunc;
+    this.speed = 20;
    // this.direction = 1;
   }
 
@@ -39,16 +40,23 @@ function Game(scaleFromFunc) {
   
 //    Add event listener for keydown movements
 
+
   this.handleKeyDown = function(event) {
-   
+    document.getElementById('speed').innerHTML = this.speed;
+if (event.key == 'ArrowDown'){
+  this.speed -= 5;
+}
+if (event.key == 'ArrowUp'){
+  this.speed += 5;
+}
 if (event.key == 'ArrowRight'){
-this.player.x += 50;
+this.player.x += this.speed;
 }
 if (event.key == 'ArrowLeft'){
-this.player.x -= 50;
+this.player.x -= this.speed;
 }
 if (event.key == ' '){
-    console.log('spaceeeee');
+    //console.log('spaceeeee');
     this.shootBall();
     document.getElementById("shoot").currentTime = 0;
     document.getElementById("shoot").volume = 0.2;
@@ -78,7 +86,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
     var loop = function() {
 
 
-        if ((Math.random() > 0.9)) {
+        if ((Math.random() > 0.98)) {
             var randomX = this.canvas.width * Math.random();
             this.notes.push(new Note(this.canvas, randomX, 3));
         }
@@ -98,7 +106,7 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
         //--------------------------------------try---------------------------------
        
         this.shoots = this.shoots.filter(function(shoot){
-            console.log('here?');
+            //console.log('here?');
             shoot.updatePosition();
             return shoot.isInsideScreen();
             
@@ -149,7 +157,6 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
           if (this.player.didCollide(note)){
 
             //++++++++++++++++++++++++++++++
-            //here should be inserted the right scale in gamestart
               this.calculatePoints(this.scale, note);
               note.y = this.canvas.height + note.size;
               playAudio(note);
@@ -160,6 +167,23 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
                   this.gameOver();
               }
           }
+          this.shoots.forEach(function(shoot){
+            console.log("canvas width ", this.canvas.width);
+            if (shoot.didCollide(note)){
+
+              //++++++++++++++++++++++++++++++
+              //here should be inserted the right scale in gamestart
+                //this.calculatePoints(cMajor, note);
+                note.y = this.canvas.height + note.size;
+                //playAudio(note);
+                
+                //console.log(`score is ${this.score}`);
+              //   if (this.player.lives === 0){
+              //       this.gameOver();
+              //   }
+            }
+          }, this);
+       
           
       }, this);
 
@@ -197,6 +221,9 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
     }
     else {
         this.lives --;
+        document.getElementById("wrong-note").currentTime = 0;
+        document.getElementById("wrong-note").volume = 0.5;
+        document.getElementById("wrong-note").play();
         document.getElementById('lives').innerHTML = this.lives;
         
     }
