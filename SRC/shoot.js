@@ -43,7 +43,7 @@ if (crossHorizontally && crossVertically) {
     Shoot.prototype.draw = function(){
     //this.ctx.fillStyle = '#070f0a';
     var imageS = new Image();
-    imageS.src = "/Images/shoot.png"
+    imageS.src = "./Images/shoot.png"
     this.ctx.drawImage(imageS, this.x, this.y, this.size, this.size);
     this.ctx.fill();
     
