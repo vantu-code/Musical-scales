@@ -13,7 +13,7 @@ function Game(scaleFromFunc) {
     this.shoots = [];
     this.lives = 3;
     this.scale = scaleFromFunc;
-    this.speed = 25;
+    this.speed = 30;
     this.countFrames = 0;
     this.countSeconds = 0;
     this.countBack = 0;
@@ -36,13 +36,13 @@ function Game(scaleFromFunc) {
       }
     },this);
 
-    console.log("here", this.collectedToShow);
+    //console.log("here", this.collectedToShow);
     //this.collectedToDisplay.push('jkkjjk', 'klkkllk');
       
     //console.log(this.collectedNotes);
     
 
-    this.collectedToShow.innerHTML = this.collectedToDisplay.sort();
+    this.collectedToShow.innerHTML = this.collectedToDisplay.sort().join(" ");
   }
 
   Game.prototype.start = function() {
@@ -51,7 +51,7 @@ function Game(scaleFromFunc) {
     this.canvas = document.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
     var currentScale = document.getElementById('scale-notes-title');
-    currentScale.innerHTML = this.scale.sort();
+    currentScale.innerHTML = this.scale.sort().join(" ");
 
     
     
@@ -71,7 +71,7 @@ function Game(scaleFromFunc) {
   this.handleKeyDown = function(event) {
   document.getElementById('speed').innerHTML = this.speed;
 
-if (event.key == 'ArrowDown'){
+if (event.key == 'ArrowDown' && this.speed > 5){
   this.speed -= 5;
 }
 if (event.key == 'ArrowUp'){
@@ -102,10 +102,18 @@ if (event.key == 'k'){
 
  if (event.key == 'w'){
   this.notes.forEach(function(note){
-    console.log(note);
+    //console.log(note);
    note.speed += 5;
    }, this);
   }
+  if (event.key == 's'){
+    this.notes.forEach(function(note){
+      //console.log(note);
+      if (note.speed > 1){
+     note.speed -= 1;
+    }
+     }, this);
+    }
 console.log(event.key);
 };
 
@@ -148,7 +156,7 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
 
         if ((Math.random() > 0.97)) {
             var randomX = (this.canvas.width - 30) * Math.random();
-            this.notes.push(new Note(this.canvas, randomX, 3));
+            this.notes.push(new Note(this.canvas, randomX, 4));
         }
 
         this.checkCollisions();

@@ -83,11 +83,9 @@ html {
   }
 
   canvas {
-      //background-color: rgb(53, 114, 99);
-      //background-position: center;
-      //background-size: cover;
+  
       height: 800px;
-      //background-repeat: no-repeat;
+  
 
       background-image: url("https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
       
@@ -145,11 +143,14 @@ color: rgb(169, 189, 197);
     right: 5px;
     padding: 10px 20px;
     top: 20px;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 2em;
   }
 
   #scale-notes-title.visible {
     color: black;
-    background-color: white;
+    /*background-color: white;*/
   }
 
   #collected{
@@ -158,9 +159,12 @@ color: rgb(169, 189, 197);
     right: 5px;
     padding: 10px 20px;
     top: 20px;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 2em;
   }
 
   #collected.visible {
-    color: black;
-    background-color: white;
+    color: white;
+    /*background-color: white;*/
   }
