@@ -17,22 +17,43 @@ function Game(scaleFromFunc) {
     this.countFrames = 0;
     this.countSeconds = 0;
     this.countBack = 0;
-    this.gameTime = 50;
+    this.gameTime = 5000;
     this.collectedNotes = [];
+    this.collectedToDisplay = [];
+    this.collectedToShow;
    // this.direction = 1;
 
   }
 
-
-
-
   //var that = this;
+
+  Game.prototype.printCollected = function(){
+    this.collectedToShow = document.getElementById('collected');
+    this.collectedNotes.forEach(function(note){
+        
+      if (!this.collectedToDisplay.includes(note) && this.scale.includes(note)){
+        this.collectedToDisplay.push(note);
+      }
+    },this);
+
+    console.log("here", this.collectedToShow);
+    //this.collectedToDisplay.push('jkkjjk', 'klkkllk');
+      
+    //console.log(this.collectedNotes);
+    
+
+    this.collectedToShow.innerHTML = this.collectedToDisplay.sort();
+  }
 
   Game.prototype.start = function() {
     // Get the canvas element, create ctx, save canvas and ctx in the game object
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = document.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
+    var currentScale = document.getElementById('scale-notes-title');
+    currentScale.innerHTML = this.scale.sort();
+
+    
     
   
     // Set the canvas to be same as the viewport size
@@ -48,7 +69,7 @@ function Game(scaleFromFunc) {
 
 
   this.handleKeyDown = function(event) {
-    document.getElementById('speed').innerHTML = this.speed;
+  document.getElementById('speed').innerHTML = this.speed;
 
 if (event.key == 'ArrowDown'){
   this.speed -= 5;
@@ -70,18 +91,32 @@ document.getElementById("shoot").volume = 0.2;
 document.getElementById("shoot").play();
 }
 if (event.key == 'j'){
-document.getElementById('scale-notes-title').innerHTML = this.scale;
+currentScale.classList.add('visible');
+
 }
-// if (event.key == 'w'){
-//   this.note.speed +=5;
-//   }
+if (event.key == 'k'){
+  this.collectedToShow.classList.add('visible');
+  
+  }
+  
+
+ if (event.key == 'w'){
+  this.notes.forEach(function(note){
+    console.log(note);
+   note.speed += 5;
+   }, this);
+  }
 console.log(event.key);
 };
 
 this.handleKeyUp = function(event) {
   if (event.key == 'j'){
-    document.getElementById('scale-notes-title').innerHTML = ' ';
+  currentScale.classList.remove('visible');
   }
+  if (event.key == 'k'){
+    this.collectedToShow.classList.remove('visible');
+    
+    }
 }
 
 
@@ -108,6 +143,8 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
   Game.prototype.startLoop = function() {
     var loop = function() {
 
+
+      this.printCollected();
 
         if ((Math.random() > 0.97)) {
             var randomX = (this.canvas.width - 30) * Math.random();
@@ -141,8 +178,10 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
 
 
         //--------------------------------------try---------------------------------
+        
+     
 
-      
+        //---------------------------------------------------------------------------
      
         this.player.draw();
         //console.log('in loop');
@@ -153,23 +192,6 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
         });
 
 
-        
-        // if (this.player.x > this.canvas.width) {
-        //     this.direction = -1;
-        // } else  if (this.player.x < 0){
-        //     this.direction = +1;
-        // }
-        // if (this.direction == 1){
-        // this.player.x++;
-        // }
-        // else if (this.direction == -1){
-        //     this.player.x--;
-        //     }
-
-    //     console.log("toooooooooo", this.direction, this.player.x);
-        
-  
-      //this.player.draw();
       //------------------------------timer------------------------------
 
       this.countFrames++;
@@ -177,7 +199,7 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
       this.countBack = this.gameTime -  this.countSeconds;
       document.getElementById('time').innerHTML = this.countBack;
       if (this.countBack === 0){
-        this.gameOver(this.score);
+        this.gameOver(this.score, this.scale);
     }
     
 
@@ -205,7 +227,7 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
               
                // console.log(`score is ${this.score} and ${this.lives} lives`);
               if (this.player.lives === 0){
-                  this.gameOver(this.score);
+                  this.gameOver(this.score, this.scale);
               }
           }
           this.shoots.forEach(function(shoot){
@@ -220,32 +242,12 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
                 this.checkFullScale(this.scale, this.collectedNotes);
                 playAudio(note);
                 
-                //console.log(`score is ${this.score}`);
-              //   if (this.player.lives === 0){
-              //       this.gameOver();
-              //   }
             }
           }, this);
        
           
       }, this);
 
-    //   this.notes.forEach(function(note){
-    //     if (this.shoot.didCollide(note)){
-
-    //       //++++++++++++++++++++++++++++++
-    //       //here should be inserted the right scale in gamestart
-    //         //this.calculatePoints(cMajor, note);
-    //         note.y = this.canvas.height + note.size;
-    //         //playAudio(note);
-    //         console.log('from shoot');
-            
-    //         //console.log(`score is ${this.score}`);
-    //       //   if (this.player.lives === 0){
-    //       //       this.gameOver();
-    //       //   }
-    //     }
-    // }, this);
   }
   Game.prototype.checkFullScale = function (scale, collectedNotes){
     var isAllScale = false;
@@ -261,6 +263,8 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
     if (noteCount == 7){
       this.score += 500;
       isAllScale = true;
+      document.getElementById("collect-all-scale").volume = 0.6;
+      document.getElementById("collect-all-scale").play();
       //this.checkFullScale.remove();
       this.collectedNotes = [];
     }
@@ -288,7 +292,7 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
         document.getElementById("wrong-note").play();
         document.getElementById('lives').innerHTML = this.lives;
         if (this.lives === 0){
-          this.gameOver(this.score);
+          this.gameOver(this.score, this.scale);
       }
     }
 

@@ -104,7 +104,7 @@ html {
       background-color: gray;
       height: 800px;
 
-      background-image: url("https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
+      background-image: url("../Images/hero-photo-splash.png"); 
       
       background-position: center; 
       background-repeat: no-repeat;
@@ -115,7 +115,6 @@ html {
       color: white;
       height: 35px;
       width: 100px;
-      
       font-size: 1em;
       text-align: center;
   }
@@ -132,10 +131,36 @@ html {
   h4 {
 font-size: 1.3em;
 margin-bottom: -0px;
-color: gray;
-//background-color: rgba(128, 128, 128, 0.24);
+color: rgb(169, 189, 197);
+/* //background-color: rgba(128, 128, 128, 0.24); */
   }
   h2 {
     font-size: 0.9em;
     margin-top: 7px;
+  }
+
+  #scale-notes-title{
+    color: rgba(0, 0, 0, 0);
+    position: absolute;
+    right: 5px;
+    padding: 10px 20px;
+    top: 20px;
+  }
+
+  #scale-notes-title.visible {
+    color: black;
+    background-color: white;
+  }
+
+  #collected{
+    color: rgba(0, 0, 0, 0);
+    position: absolute;
+    right: 5px;
+    padding: 10px 20px;
+    top: 20px;
+  }
+
+  #collected.visible {
+    color: black;
+    background-color: white;
   }
