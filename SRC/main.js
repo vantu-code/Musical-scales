@@ -175,7 +175,7 @@ function buildDom(htmlString) {
           <div><span>  Scale: </span><span id="scale">c Major</span></div>
           <div><span>  Speed: </span><span id="speed">20</span></div>
           <div><span>  Time: </span><span id="time">50</span></div>
-          <span> </span><span id="allowed"></span>
+          <span id="scale-notes-title"> </span><span id="scale-notes"> </span>
         </div>
           <section class="canvas-container">
             <canvas></canvas>
