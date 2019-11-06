@@ -252,14 +252,18 @@ function buildDom(htmlString) {
             gameOver(game.score);
           });
     }
+   
 
     function createGameOverScreen(score) {
       gameOverScreen = buildDom(`
-        <main>
-          <h1>Game over</h1>
+        <main id="game-over">
+        <div id="titles">
+          <h1>Good game!</h1>
           <p>Your score: <span id="score"></span></p>
+          <p>You tried the scale of: <span id="scale"></span></p>
+          <button>Back to another game</button>
+          </div>
 
-          <button>Restart</button>
 
 
 

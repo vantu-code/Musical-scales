@@ -11,7 +11,7 @@ function Game(scaleFromFunc, scaleName) {
     this.score = 0;
     this.notes = [];
     this.shoots = [];
-    this.lives = 3;
+    this.lives = 1;
     this.scale = scaleFromFunc;
     this.speed = 30;
     this.countFrames = 0;
@@ -328,7 +328,7 @@ Game.prototype.gameOver = function(score, scaleName){
 
   };
 Game.prototype.removeGameScreen = function() {
-  console.log("Removing")
+  //console.log("Removing")
     this.gameScreen.remove();
   };
 

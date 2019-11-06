@@ -168,3 +168,27 @@ color: rgb(169, 189, 197);
     color: white;
     /*background-color: white;*/
   }
+
+  #game-over{
+    color: white;
+      text-align: center;
+      padding-top: 300px;
+      background-color: gray;
+      height: 800px;
+
+      background-image: url("../Images/hero-photo-splash.png"); 
+      
+      background-position: center; 
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+
+  table{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+  }
+  #titles{
+    margin-top: -200px;
+  }

@@ -151,6 +151,9 @@ function data (score, scaleName){
 
         };
     });
+
+    document.getElementById('scale').innerHTML = scaleName;
+    
     var printTable = `
         <tr>
             <th>Scale: </th>
@@ -160,7 +163,7 @@ function data (score, scaleName){
     `;
     for (let key in allScales){
         var average = 0;
-        
+
         if ((allScales[key].sumOfScores/allScales[key].count).toFixed(1) > 0){
             average = (allScales[key].sumOfScores/allScales[key].count).toFixed(1);
         }
