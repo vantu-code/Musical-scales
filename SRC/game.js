@@ -322,8 +322,9 @@ Game.prototype.passGameOverCallback = function(callback) {
 Game.prototype.gameOver = function(score, scaleName){
       //this.data = new Data(this.score, this.scale);
       // this.gameIsOver = true;
-      data(score, scaleName);
+      
       this.onGameOverCallback();
+      data(score, scaleName);
 
   };
 Game.prototype.removeGameScreen = function() {

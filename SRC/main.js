@@ -260,6 +260,11 @@ function buildDom(htmlString) {
           <p>Your score: <span id="score"></span></p>
 
           <button>Restart</button>
+
+
+
+
+          <table id="table"></table> 
       </main>
       `);
       //console.log(score);
