@@ -11,6 +11,8 @@ function buildDom(htmlString) {
     var splashScreen;
     var game;
     var gameOverScreen;
+    var findScale = '';
+    var nameOfScale = '';
   
     function createSplashScreen() {
       splashScreen = buildDom(`
@@ -55,13 +57,15 @@ function buildDom(htmlString) {
            
         document.getElementById("button-click").play();
         selectScale(scaleList, majorMinor);
+        findScaleName()
         startGame();
+
        //console.log((this.game.scale).bind(this));
         
       });
     }
 
-    var findScale = '';
+
     function selectScale (a,b){
         
         switch (b) {
@@ -152,14 +156,50 @@ function buildDom(htmlString) {
             default:
     break;
     }
-    console.log(findScale);
+    //console.log(findScale);
     }
 
-//console.log(this.game.scale);
+    function findScaleName(){
+      switch (findScale) {
+  case cMajor:
+        nameOfScale = 'C / Am';
+  break;
+  case cSharpMajor:
+        nameOfScale = 'C# / A#m';
+  break;
+  case dMajor:
+        nameOfScale = 'D / Bm';
+  break;
+  case dSharpMajor:
+        nameOfScale = 'D# / Cm';
+  break;
+  case eMajor:
+        nameOfScale = 'E / C#m';
+  break;
+  case fMajor:
+        nameOfScale = 'F / Dm';
+  break;
+  case fSharpMajor:
+        nameOfScale = 'F# / D#m';
+  break;
+  case gMajor:
+        nameOfScale = 'G / Em';
+  break;
+  case gSharpMajor:
+        nameOfScale = 'G# / Fm';
+  break;
+  case aMajor:
+        nameOfScale = 'A / F#m';
+  break;
+  case aSharpMajor:
+        nameOfScale = 'A# / Gm';
+  break;
+  case bMajor:
+        nameOfScale = 'B / G#m';
+  break;
+      }
+    }
 
-
-
-   
     function removeSplashScreen() {
       splashScreen.remove();
     }
@@ -187,45 +227,8 @@ function buildDom(htmlString) {
       document.body.appendChild(gameScreen);
       // allowed notes? 
       //document.getElementById('allowed').innerHTML = findScale;
-      var nameOfScale = '';
-      switch (findScale) {
-          case cMajor:
-                nameOfScale = 'C / Am';
-          break;
-          case cSharpMajor:
-                nameOfScale = 'C# / A#m';
-          break;
-          case dMajor:
-                nameOfScale = 'D / Bm';
-          break;
-          case dSharpMajor:
-                nameOfScale = 'D# / Cm';
-          break;
-          case eMajor:
-                nameOfScale = 'E / C#m';
-          break;
-          case fMajor:
-                nameOfScale = 'F / Dm';
-          break;
-          case fSharpMajor:
-                nameOfScale = 'F# / D#m';
-          break;
-          case gMajor:
-                nameOfScale = 'G / Em';
-          break;
-          case gSharpMajor:
-                nameOfScale = 'G# / Fm';
-          break;
-          case aMajor:
-                nameOfScale = 'A / F#m';
-          break;
-          case aSharpMajor:
-                nameOfScale = 'A# / Gm';
-          break;
-          case bMajor:
-                nameOfScale = 'B / G#m';
-          break;
-      }
+      //console.log(nameOfScale);
+
       document.getElementById('scale').innerHTML = nameOfScale;
 
         
@@ -240,7 +243,7 @@ function buildDom(htmlString) {
     function startGame() {
       removeSplashScreen();
       removeGameOverScreen();
-      game = new Game(findScale);
+      game = new Game(findScale, nameOfScale);
       game.gameScreen = createGameScreen(game.speed);
       
       game.start();
@@ -259,7 +262,7 @@ function buildDom(htmlString) {
           <button>Restart</button>
       </main>
       `);
-      console.log(score);
+      //console.log(score);
       //this.document.getElementById('score').innerHTML = score;
       var button = gameOverScreen.querySelector('button');
       button.addEventListener('click', function () {
@@ -280,7 +283,9 @@ function buildDom(htmlString) {
     }
   
     function gameOver(score) {
-                      
+      document.removeEventListener('keydown', game.handleKeyDown.bind(this));
+      document.removeEventListener('keyup', game.handleKeyUp.bind(this));
+
       removeGameScreen();
       createGameOverScreen(score);
     }
@@ -293,5 +298,7 @@ function buildDom(htmlString) {
   
   window.onload = main;
 
+
+  
   
 

@@ -53,7 +53,7 @@ var aSharpNote = document.getElementById("a#");
 var bNote = document.getElementById("b");
 
 function playAudio(note) {
-    console.log(`note is' + ${note.key}`);
+   // console.log(`note is' + ${note.key}`);
     // cNote.play();
     switch (note.key) {
         case "c":
@@ -105,7 +105,7 @@ function playAudio(note) {
         bNote.play();
         break;
         default:
-            console.log('none of them');
+            //console.log('none of them');
             break;
 }
 }

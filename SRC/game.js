@@ -1,6 +1,6 @@
 'use strict';
 
-function Game(scaleFromFunc) {
+function Game(scaleFromFunc, scaleName) {
     this.canvas = null;
     this.ctx = null;
     this.enemies = [];
@@ -21,6 +21,9 @@ function Game(scaleFromFunc) {
     this.collectedNotes = [];
     this.collectedToDisplay = [];
     this.collectedToShow;
+    this.data = null;
+    this.scaleName = scaleName;
+    this.currentSpeed;
    // this.direction = 1;
 
   }
@@ -52,6 +55,7 @@ function Game(scaleFromFunc) {
     this.ctx = this.canvas.getContext('2d');
     var currentScale = document.getElementById('scale-notes-title');
     currentScale.innerHTML = this.scale.sort().join(" ");
+    this.currentSpeed = document.getElementById('speed');
 
     
     
@@ -69,7 +73,7 @@ function Game(scaleFromFunc) {
 
 
   this.handleKeyDown = function(event) {
-  document.getElementById('speed').innerHTML = this.speed;
+  
 
 if (event.key == 'ArrowDown' && this.speed > 5){
   this.speed -= 5;
@@ -114,7 +118,7 @@ if (event.key == 'k'){
     }
      }, this);
     }
-console.log(event.key);
+//console.log(event.key);
 };
 
 this.handleKeyUp = function(event) {
@@ -151,7 +155,7 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
   Game.prototype.startLoop = function() {
     var loop = function() {
 
-
+      this.currentSpeed.innerHTML = this.speed;
       this.printCollected();
 
         if ((Math.random() > 0.97)) {
@@ -206,14 +210,18 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
       this.countSeconds = Math.floor(this.countFrames/60);
       this.countBack = this.gameTime -  this.countSeconds;
       document.getElementById('time').innerHTML = this.countBack;
+      //console.log("countBack", this.countBack)
+
       if (this.countBack === 0){
-        this.gameOver(this.score, this.scale);
-    }
-    
-
-
+        this.gameIsOver = true;
+      }
+      
+      
+      
       if (!this.gameIsOver) {
-      window.requestAnimationFrame(loop);
+        window.requestAnimationFrame(loop);
+      } else {
+        this.gameOver(this.score, this.scaleName);
       }
     }.bind(this);
   
@@ -231,15 +239,13 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
               this.collectedNotes.push(note.key);
               this.checkFullScale(this.scale, this.collectedNotes);
               //console.log(this.collectedNotes);
-              console.log(note.key);
+              //console.log(note.key);
               
                // console.log(`score is ${this.score} and ${this.lives} lives`);
-              if (this.player.lives === 0){
-                  this.gameOver(this.score, this.scale);
-              }
+          
           }
           this.shoots.forEach(function(shoot){
-            console.log("canvas width ", this.canvas.width);
+            //console.log("canvas width ", this.canvas.width);
             if (shoot.didCollide(note)){
 
               //++++++++++++++++++++++++++++++
@@ -299,8 +305,9 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
         document.getElementById("wrong-note").volume = 0.5;
         document.getElementById("wrong-note").play();
         document.getElementById('lives').innerHTML = this.lives;
+        console.log("lives", this.lives)
         if (this.lives === 0){
-          this.gameOver(this.score, this.scale);
+          this.gameIsOver = true;
       }
     }
 
@@ -312,11 +319,15 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
 Game.prototype.passGameOverCallback = function(callback) {
     this.onGameOverCallback = callback;
   };
-Game.prototype.gameOver = function(){
-      this.gameIsOver = true;
+Game.prototype.gameOver = function(score, scaleName){
+      //this.data = new Data(this.score, this.scale);
+      // this.gameIsOver = true;
+      data(score, scaleName);
       this.onGameOverCallback();
+
   };
 Game.prototype.removeGameScreen = function() {
+  console.log("Removing")
     this.gameScreen.remove();
   };
 
