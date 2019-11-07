@@ -153,7 +153,7 @@ function data (score, scaleName){
     });
 
     document.getElementById('scale').innerHTML = scaleName;
-    
+
     var printTable = `
         <tr>
             <th>Scale: </th>
@@ -169,7 +169,7 @@ function data (score, scaleName){
         }
     
 
-        printTable += `<tr><td>${allScales[key].name}</td><td>${allScales[key].count}</td><td>${average}</td></tr>`;
+        printTable += `<tr id="score-row"><td>${allScales[key].name}</td><td>${allScales[key].count}</td><td>${average}</td></tr>`;
     };
 
     var scoreScreen = document.querySelector('table');

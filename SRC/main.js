@@ -13,6 +13,8 @@ function buildDom(htmlString) {
     var gameOverScreen;
     var findScale = '';
     var nameOfScale = '';
+    var instructionsButton;
+    var instructions;
   
     function createSplashScreen() {
       splashScreen = buildDom(`
@@ -42,7 +44,8 @@ function buildDom(htmlString) {
     <option value="minor">Minor</option>
     </select>
     </div>
-        <button><h2>Start Game</h2></button>
+        <button id="start-game"><h2>Start Game</h2></button>
+        <button id="instructions-button">Instcructions</button>
        </main>
       `);
   
@@ -50,10 +53,13 @@ function buildDom(htmlString) {
 
       
   
-      var startButton = splashScreen.querySelector('button');
+      var startButton = splashScreen.querySelector('#start-game');
+      
       startButton.addEventListener('click', function() {
         var scaleList = document.getElementById('select-scale').value;
         var majorMinor = document.getElementById('major-minor').value;
+
+      
            
         document.getElementById("button-click").play();
         selectScale(scaleList, majorMinor);
@@ -63,7 +69,38 @@ function buildDom(htmlString) {
        //console.log((this.game.scale).bind(this));
         
       });
+      instructionsButton = document.querySelector('#instructions-button');
+      instructionsButton.addEventListener('click', function() {
+        console.log('button');
+        createInstructionsScreen();
+      })
+
     }
+
+
+    function createInstructionsScreen() {
+      instructions = buildDom(`
+       <main id="instructions">
+       <button id="button-back">Back</button>
+       </main>
+      `);
+
+      removeSplashScreen();
+  
+      document.body.appendChild(instructions);
+
+      var buttonBack = document.querySelector('#button-back');
+      buttonBack.addEventListener('click', function () {
+        console.log('back');
+        removeInstructionScreen();
+        createSplashScreen();
+        
+      });
+  
+  }
+  function removeInstructionScreen(){
+  instructions.remove();
+  }
 
 
     function selectScale (a,b){
@@ -261,7 +298,7 @@ function buildDom(htmlString) {
           <h1>Good game!</h1>
           <p>Your score: <span id="score"></span></p>
           <p>You tried the scale of: <span id="scale"></span></p>
-          <button>Back to another game</button>
+          <button id="back-from-scoreboard">Back to another game</button>
           </div>
 
 
