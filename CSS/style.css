@@ -16,7 +16,8 @@ html {
   
   body {
     color: #111;
-    font-family: Helvetica, Arial, sans-serif;
+    /* font-family: Helvetica, Arial, sans-serif; */
+    font-family: 'Unica One', cursive;
     font-size: 16px;
     line-height: 147%;
   }
@@ -112,12 +113,14 @@ html {
       background-color: black;
       color: white;
       height: 35px;
-      width: 100px;
-      font-size: 1em;
+      width: 120px;
+      font-size: 1.5em;
       text-align: center;
       border: 0.9px solid rgba(255, 253, 253, 0.486);
       border-radius: 3px;
       box-shadow: -6px 6px 5px -1px (#000000 0.54);
+      font-family: 'Unica One', cursive;
+      
       /* box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); */
   }
   #start-game:hover{
@@ -128,9 +131,14 @@ html {
 
 
   #headline {
+      
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-around;
+      position: absolute;
+      width :100%;
+      padding-left: 12%;
+      background-color: rgba(71, 71, 71, 0.103);
   }
 
   #headline div{
@@ -144,13 +152,13 @@ color: rgb(165, 192, 202);
   }
   h2 {
     font-size: 0.9em;
-    margin-top: 7px;
+    margin-top: 4px;
   }
 
   #scale-notes-title{
     color: rgba(0, 0, 0, 0);
     position: absolute;
-    right: 5px;
+    left: 10px;
     padding: 10px 20px;
     top: 20px;
     text-transform: uppercase;
@@ -166,7 +174,7 @@ color: rgb(165, 192, 202);
   #collected{
     color: rgba(0, 0, 0, 0);
     position: absolute;
-    right: 5px;
+    left: 10px;
     padding: 10px 20px;
     top: 20px;
     text-transform: uppercase;
@@ -185,6 +193,7 @@ color: rgb(165, 192, 202);
       padding-top: 300px;
       background-color: gray;
       height: 800px;
+  
 
       background-image: url("../Images/hero-photo-splash.png"); 
       
@@ -198,11 +207,13 @@ color: rgb(165, 192, 202);
     display: flex;
     justify-content: space-around;
     margin-top: 80px;
+    
   }
   #titles{
     margin-top: -200px;
   }
 td {
+    width: 150px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.226);
   }
 
@@ -215,22 +226,25 @@ td {
   }
   tr th{
     background-color: rgba(40, 40, 46, 0.233);
+    font-size: 0.8em;
+    text-align: center;
   }
 
 
   #instructions{
-    height: 100%;
-
+    /* height: 100%; */
+    height: 800px;
     background-image: url("../Images/Instructions.png"); 
     
     background-position: center; 
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 #instructions-button{
   background-color: rgba(0, 0, 0, 0.137);
-  border: none;
+  border: 1px solid rgba(187, 187, 187, 0.836);
   color: rgb(255, 255, 255);
   text-align: center;
   display: flex;
@@ -238,20 +252,23 @@ td {
   flex-direction: row;
   position: absolute; 
   width: 10%;
-  margin-top: 50px;
+  margin-top: 90px;
   margin-left: 45%;
+  font-family: 'Unica One', cursive;
+  font-size: 1em;
   
 }
 #instructions-button:hover{
 
   background-color: rgba(143, 143, 143, 0.452);
   color: black;
+  border: 1px solid rgba(173, 171, 171, 0.363);
   
 }
 
 #button-back{
   background-color: rgba(0, 0, 0, 0.623);
-  border: none;
+  border: 1px solid rgba(187, 187, 187, 0.836);
   color: rgb(255, 255, 255);
   text-align: center;
   display: flex;
@@ -259,20 +276,26 @@ td {
   flex-direction: row;
   position: absolute; 
   width: 10%;
-  margin-top: 500px;
+  margin-top: 30%;
   margin-left: 45%;
+  font-family: 'Unica One', cursive;
 }
 #button-back:hover{
   background-color: rgba(240, 255, 240, 0.445);
   color: black;
+  border: 1px solid rgba(173, 171, 171, 0.363);
 }
 #select-scale, #major-minor{
+  margin-bottom: 5px;
   background-color: rgba(185, 185, 185, 0.664);
   border: 1px solid transparent;
+  font-family: 'Unica One', cursive;
+  width: 4%;
 }
 
 #select-scale select {
   background-color: green;
+
 }
 
 #back-from-scoreboard{
@@ -285,10 +308,11 @@ td {
  
   width: 15%;
   margin-top: 40px;
+  font-family: 'Unica One', cursive;
   
 }
 #back-from-scoreboard:hover{
   background-color: rgba(240, 255, 240, 0.445);
   color: black;
-  border: none;
+  border: 1px solid rgba(187, 187, 187, 0.836);
 }

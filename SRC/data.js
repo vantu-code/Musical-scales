@@ -156,9 +156,9 @@ function data (score, scaleName){
 
     var printTable = `
         <tr>
-            <th>Scale: </th>
-            <th>Times played: </th>
-            <th>Average score: </th>
+            <th>Scale</th>
+            <th>Times played</th>
+            <th>Average score</th>
         </tr>
     `;
     for (let key in allScales){
