@@ -192,7 +192,7 @@ color: rgb(165, 192, 202);
       text-align: center;
       padding-top: 300px;
       background-color: gray;
-      height: 800px;
+      height: 100%; 
   
 
       background-image: url("../Images/hero-photo-splash.png"); 
@@ -214,18 +214,18 @@ color: rgb(165, 192, 202);
   }
 td {
     width: 150px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.452);
   }
 
   tr td{
-    background-color: rgba(40, 40, 46, 0.055);
+    background-color: rgba(40, 40, 46, 0.24);
   }
 
   th {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.438);
   }
   tr th{
-    background-color: rgba(40, 40, 46, 0.233);
+    background-color: rgba(40, 40, 46, 0.425);
     font-size: 0.8em;
     text-align: center;
   }
@@ -276,7 +276,7 @@ td {
   flex-direction: row;
   position: absolute; 
   width: 10%;
-  margin-top: 30%;
+  margin-top: 33%;
   margin-left: 45%;
   font-family: 'Unica One', cursive;
 }
