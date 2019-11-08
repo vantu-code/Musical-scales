@@ -49,6 +49,8 @@ function Game(scaleFromFunc, scaleName) {
   }
 
   Game.prototype.start = function() {
+    document.getElementById("rain").volume = 0.05;
+    document.getElementById("rain").play();
     // Get the canvas element, create ctx, save canvas and ctx in the game object
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = document.querySelector('canvas');
@@ -220,8 +222,11 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
       
       if (!this.gameIsOver) {
         window.requestAnimationFrame(loop);
+        
       } else {
         this.gameOver(this.score, this.scaleName);
+        document.getElementById("rain").volume = 0;
+        document.getElementById("end-game").play();
       }
     }.bind(this);
   
