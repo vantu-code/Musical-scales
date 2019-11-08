@@ -11,13 +11,13 @@ function Game(scaleFromFunc, scaleName) {
     this.score = 0;
     this.notes = [];
     this.shoots = [];
-    this.lives = 1;
+    this.lives = 3;
     this.scale = scaleFromFunc;
     this.speed = 30;
     this.countFrames = 0;
     this.countSeconds = 0;
     this.countBack = 0;
-    this.gameTime = 5000;
+    this.gameTime = 50;
     this.collectedNotes = [];
     this.collectedToDisplay = [];
     this.collectedToShow;
