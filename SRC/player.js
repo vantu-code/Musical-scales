@@ -7,21 +7,16 @@ function Player(canvas) {
     this.x = canvas.width / 2;
     this.y = canvas.height -150;
   }
-  
 
   Player.prototype.draw = function() {
     this.ctx.fillStyle = '#FF69B4';
-    // fillRect(x, y, width, height)
-    //this.ctx.fillRect(this.x, this.y, this.size, this.size/4);
     var imageP = new Image();
     imageP.src = "./Images/player6.png"
     this.ctx.drawImage(imageP, this.x, this.y, 73, 100);
     this.ctx.fill();
   };
 
-
   Player.prototype.didCollide = function(note){
-    //   console.log('didCollide func');
 var playerLeft = this.x;
 var playerRight = this.x + this.size;
 var playerTop = this.y;

@@ -105,14 +105,10 @@ function playAudio(note) {
         bNote.play();
         break;
         default:
-            //console.log('none of them');
             break;
 }
 }
 
-
-
-//console.log(`aMinor is ${aMinor}`);
 
 
 Note.prototype.draw = function(){
@@ -127,10 +123,6 @@ Note.prototype.draw = function(){
         }
     }
     
-    //console.log(this.key, allNotes); 
-    // = arrOfSrc[0];
-//this.ctx.fillStyle = '#303437';
-//this.ctx.src = "/Images/vinyl1.jpeg";
 this.ctx.drawImage(image, this.x, this.y, this.size, this.size);
 this.ctx.fill();
 

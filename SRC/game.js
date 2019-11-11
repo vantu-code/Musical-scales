@@ -24,27 +24,16 @@ function Game(scaleFromFunc, scaleName) {
     this.data = null;
     this.scaleName = scaleName;
     this.currentSpeed;
-   // this.direction = 1;
 
   }
-
-  //var that = this;
 
   Game.prototype.printCollected = function(){
     this.collectedToShow = document.getElementById('collected');
     this.collectedNotes.forEach(function(note){
-        
       if (!this.collectedToDisplay.includes(note) && this.scale.includes(note)){
         this.collectedToDisplay.push(note);
       }
     },this);
-
-    //console.log("here", this.collectedToShow);
-    //this.collectedToDisplay.push('jkkjjk', 'klkkllk');
-      
-    //console.log(this.collectedNotes);
-    
-
     this.collectedToShow.innerHTML = this.collectedToDisplay.sort().join(" ");
   }
 
@@ -62,16 +51,16 @@ function Game(scaleFromFunc, scaleName) {
     
     
   
-    // Set the canvas to be same as the viewport size
+    //---------Set the canvas to be same as the viewport size
     this.containerWidth = this.canvasContainer.offsetWidth;
     this.containerHeight = this.canvasContainer.offsetHeight;
     this.canvas.setAttribute('width', this.containerWidth);
     this.canvas.setAttribute('height', this.containerHeight);
   
-    // Create new player
+    //--------- Create new player
     this.player = new Player(this.canvas);
   
-//    Add event listener for keydown movements
+
 
 
   this.handleKeyDown = function(event) {
@@ -102,25 +91,23 @@ currentScale.classList.add('visible');
 }
 if (event.key == 'k'){
   this.collectedToShow.classList.add('visible');
-  
   }
   
 
- if (event.key == 'w'){
+if (event.key == 'w'){
   this.notes.forEach(function(note){
-    //console.log(note);
+
    note.speed += 5;
    }, this);
   }
-  if (event.key == 's'){
+if (event.key == 's'){
     this.notes.forEach(function(note){
-      //console.log(note);
+
       if (note.speed > 1){
-     note.speed -= 1;
+          note.speed -= 1;
     }
-     }, this);
+    }, this);
     }
-//console.log(event.key);
 };
 
 this.handleKeyUp = function(event) {
@@ -138,7 +125,9 @@ document.addEventListener('keydown', this.handleKeyDown.bind(this));
 
 document.addEventListener('keyup', this.handleKeyUp.bind(this));
 
-   // }
+
+//------------touch potions-------------------------------------
+
   
     // Start the game loop
   
@@ -169,60 +158,42 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
         this.player.handleScreenCollision();
 
         this.notes = this.notes.filter(function(note){
-            
             note.updatePosition();
             return note.isInsideScreen();
-            
         });
-        
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        //--------------------------------------try---------------------------------
-       
         this.shoots = this.shoots.filter(function(shoot){
-        
-            shoot.updatePosition();
-            return shoot.isInsideScreen();
-            
+          shoot.updatePosition();
+          return shoot.isInsideScreen(); 
         });
+//------- clear screen
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+//------- draw screen
         this.shoots.forEach(function(item){
             item.draw();
             
         });
 
-
-        //--------------------------------------try---------------------------------
-        
-     
-
-        //---------------------------------------------------------------------------
-     
         this.player.draw();
-        //console.log('in loop');
 
         this.notes.forEach(function(item){
             item.draw();
             
         });
 
-
-      //------------------------------timer------------------------------
-
+//---timer-------------
       this.countFrames++;
       this.countSeconds = Math.floor(this.countFrames/60);
       this.countBack = this.gameTime -  this.countSeconds;
       document.getElementById('time').innerHTML = this.countBack;
-      //console.log("countBack", this.countBack)
+
 
       if (this.countBack === 0){
         this.gameIsOver = true;
       }
       
-      
-      
       if (!this.gameIsOver) {
-        window.requestAnimationFrame(loop);
-        
+        window.requestAnimationFrame(loop);      
       } else {
         this.gameOver(this.score, this.scaleName);
         document.getElementById("rain").volume = 0;
@@ -237,24 +208,14 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
       this.notes.forEach(function(note){
           if (this.player.didCollide(note)){
 
-            //++++++++++++++++++++++++++++++
               this.calculatePoints(this.scale, note);
               note.y = this.canvas.height + note.size;
               playAudio(note);
               this.collectedNotes.push(note.key);
               this.checkFullScale(this.scale, this.collectedNotes);
-              //console.log(this.collectedNotes);
-              //console.log(note.key);
-              
-               // console.log(`score is ${this.score} and ${this.lives} lives`);
-          
           }
           this.shoots.forEach(function(shoot){
-            //console.log("canvas width ", this.canvas.width);
             if (shoot.didCollide(note)){
-
-              //++++++++++++++++++++++++++++++
-              //here should be inserted the right scale in gamestart
                 this.calculatePoints(this.scale, note);
                 note.y = this.canvas.height + note.size;
                 this.collectedNotes.push(note.key);
@@ -263,7 +224,6 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
                 
             }
           }, this);
-       
           
       }, this);
 
@@ -314,11 +274,7 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
         if (this.lives === 0){
           this.gameIsOver = true;
       }
-    }
-
-    //console.log(count);
-    
-    
+    }    
 }
 
 Game.prototype.passGameOverCallback = function(callback) {
