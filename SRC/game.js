@@ -1,6 +1,7 @@
 'use strict';
 
-function Game(scaleFromFunc, scaleName) {
+class Game {
+constructor(scaleFromFunc, scaleName){
     this.canvas = null;
     this.ctx = null;
     this.enemies = [];
@@ -24,10 +25,8 @@ function Game(scaleFromFunc, scaleName) {
     this.data = null;
     this.scaleName = scaleName;
     this.currentSpeed;
-
   }
-
-  Game.prototype.printCollected = function(){
+  printCollected(){
     this.collectedToShow = document.getElementById('collected');
     this.collectedNotes.forEach(function(note){
       if (!this.collectedToDisplay.includes(note) && this.scale.includes(note)){
@@ -37,7 +36,7 @@ function Game(scaleFromFunc, scaleName) {
     this.collectedToShow.innerHTML = this.collectedToDisplay.sort().join(" ");
   }
 
-  Game.prototype.start = function() {
+  start() {
     document.getElementById("rain").volume = 0.05;
     document.getElementById("rain").play();
     // Get the canvas element, create ctx, save canvas and ctx in the game object
@@ -49,8 +48,6 @@ function Game(scaleFromFunc, scaleName) {
     this.currentSpeed = document.getElementById('speed');
 
     
-    
-  
     //---------Set the canvas to be same as the viewport size
     this.containerWidth = this.canvasContainer.offsetWidth;
     this.containerHeight = this.canvasContainer.offsetHeight;
@@ -60,8 +57,6 @@ function Game(scaleFromFunc, scaleName) {
     //--------- Create new player
     this.player = new Player(this.canvas);
   
-
-
 
   this.handleKeyDown = function(event) {
   
@@ -92,17 +87,13 @@ currentScale.classList.add('visible');
 if (event.key == 'k'){
   this.collectedToShow.classList.add('visible');
   }
-  
-
 if (event.key == 'w'){
   this.notes.forEach(function(note){
-
-   note.speed += 5;
-   }, this);
+    note.speed += 5;
+    }, this);
   }
 if (event.key == 's'){
     this.notes.forEach(function(note){
-
       if (note.speed > 1){
           note.speed -= 1;
     }
@@ -116,34 +107,23 @@ this.handleKeyUp = function(event) {
   }
   if (event.key == 'k'){
     this.collectedToShow.classList.remove('visible');
-    
     }
 }
-
-
 document.addEventListener('keydown', this.handleKeyDown.bind(this));
-
 document.addEventListener('keyup', this.handleKeyUp.bind(this));
-
-
 //------------touch potions-------------------------------------
 
-  
     // Start the game loop
   
     this.startLoop();
   };
-  
-  //------------------------------------
-  Game.prototype.shootBall = function() {
 
-      var x = this.player.x + this.player.size/2;
-    this.shoots.push(new Shoot(this.canvas, 10, x));
+  shootBall() {
+    var x = this.player.x + this.player.size/2;
+  this.shoots.push(new Shoot(this.canvas, 10, x));
+  };
 
-}
-//------------------------------------
-
-  Game.prototype.startLoop = function() {
+  startLoop() {
     var loop = function() {
 
       this.currentSpeed.innerHTML = this.speed;
@@ -204,57 +184,55 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
     window.requestAnimationFrame(loop);
   };
 
-  Game.prototype.checkCollisions = function(){
-      this.notes.forEach(function(note){
-          if (this.player.didCollide(note)){
+  checkCollisions(){
+    this.notes.forEach(function(note){
+        if (this.player.didCollide(note)){
 
+            this.calculatePoints(this.scale, note);
+            note.y = this.canvas.height + note.size;
+            playAudio(note);
+            this.collectedNotes.push(note.key);
+            this.checkFullScale(this.scale, this.collectedNotes);
+        }
+        this.shoots.forEach(function(shoot){
+          if (shoot.didCollide(note)){
               this.calculatePoints(this.scale, note);
               note.y = this.canvas.height + note.size;
-              playAudio(note);
               this.collectedNotes.push(note.key);
               this.checkFullScale(this.scale, this.collectedNotes);
+              playAudio(note);
+              
           }
-          this.shoots.forEach(function(shoot){
-            if (shoot.didCollide(note)){
-                this.calculatePoints(this.scale, note);
-                note.y = this.canvas.height + note.size;
-                this.collectedNotes.push(note.key);
-                this.checkFullScale(this.scale, this.collectedNotes);
-                playAudio(note);
-                
-            }
-          }, this);
-          
-      }, this);
+        }, this);
+        
+    }, this);
 
-  }
-  Game.prototype.checkFullScale = function (scale, collectedNotes){
-    var isAllScale = false;
-    var noteCount = 0;
-    scale.forEach(function(ele){
-      if (!collectedNotes.includes(ele)){
+  };
 
-      }
-      else if (collectedNotes.includes(ele)){
-        noteCount++;
-      }
-    })
-    if (noteCount == 7){
-      this.score += 500;
-      isAllScale = true;
-      document.getElementById("collect-all-scale").volume = 0.6;
-      document.getElementById("collect-all-scale").play();
-      //this.checkFullScale.remove();
-      this.collectedNotes = [];
+  checkFullScale(scale, collectedNotes){
+  var isAllScale = false;
+  var noteCount = 0;
+  scale.forEach(function(ele){
+    if (!collectedNotes.includes(ele)){
+
     }
-    return isAllScale;
+    else if (collectedNotes.includes(ele)){
+      noteCount++;
+    }
+  })
+  if (noteCount == 7){
+    this.score += 500;
+    isAllScale = true;
+    document.getElementById("collect-all-scale").volume = 0.6;
+    document.getElementById("collect-all-scale").play();
+    //this.checkFullScale.remove();
+    this.collectedNotes = [];
   }
+  return isAllScale;
+  };
 
-  Game.prototype.calculatePoints = function (scale, currentNote){
-    //console.log('calculatePoints here');
-    //console.log(currentNote.key);
+  calculatePoints(scale, currentNote){
     var isInScale = false;
-    
     scale.forEach(function(ele){
     if (ele === currentNote.key){
         isInScale = true;
@@ -275,26 +253,20 @@ document.addEventListener('keyup', this.handleKeyUp.bind(this));
           this.gameIsOver = true;
       }
     }    
-}
+  };
 
-Game.prototype.passGameOverCallback = function(callback) {
+  passGameOverCallback(callback) {
     this.onGameOverCallback = callback;
   };
-Game.prototype.gameOver = function(score, scaleName){
-      //this.data = new Data(this.score, this.scale);
-      // this.gameIsOver = true;
-      
+
+  gameOver(score, scaleName){     
       this.onGameOverCallback();
       data(score, scaleName);
-
   };
-Game.prototype.removeGameScreen = function() {
-  //console.log("Removing")
+
+  removeGameScreen() {
     this.gameScreen.remove();
   };
 
+  };
 
-
-
-
-    

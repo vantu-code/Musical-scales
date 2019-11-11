@@ -1,7 +1,7 @@
 'use strict';
 
-function Note(canvas, x, speed) {
-    
+class Note {
+    constructor(canvas, x, speed) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.size = Math.random() * 30 + 20 ;
@@ -9,7 +9,29 @@ function Note(canvas, x, speed) {
     this.x = x;
     this.y = 0 - this.size;
     this.speed = speed;
+    }
+
+    draw(){
+        var image = new Image();
+        var arrOfSrc = ["./Images/c.png","./Images/cs.png","./Images/d.png","./Images/ds.png","./Images/e.png","./Images/f.png","./Images/fs.png","./Images/g.png","./Images/gs.png","./Images/a.png","./Images/as.png","./Images/b.png"];
+        for (let i = 0; i <= allNotes.length; i++){
+            if (this.key == allNotes[i]){
+                image.src = arrOfSrc[i];
+            }
+        };
+        
+    this.ctx.drawImage(image, this.x, this.y, this.size, this.size);
+    this.ctx.fill();
     
+    };
+    
+    updatePosition(){
+        this.y = this.y + this.speed;
+    }
+    
+    isInsideScreen(){
+        return this.y + this.size /2 < this.canvas.height;
+    }
 }
 var allNotes = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b'];
 
@@ -53,8 +75,6 @@ var aSharpNote = document.getElementById("a#");
 var bNote = document.getElementById("b");
 
 function playAudio(note) {
-   // console.log(`note is' + ${note.key}`);
-    // cNote.play();
     switch (note.key) {
         case "c":
         cNote.currentTime = 0;
@@ -111,28 +131,4 @@ function playAudio(note) {
 
 
 
-Note.prototype.draw = function(){
-
-    var image = new Image();
-   //image.src = `/Images/Cstry.png`;
-    var arrOfSrc = ["./Images/c.png","./Images/cs.png","./Images/d.png","./Images/ds.png","./Images/e.png","./Images/f.png","./Images/fs.png","./Images/g.png","./Images/gs.png","./Images/a.png","./Images/as.png","./Images/b.png"];
-    
-    for (let i = 0; i <= allNotes.length; i++){
-        if (this.key == allNotes[i]){
-            image.src = arrOfSrc[i];
-        }
-    }
-    
-this.ctx.drawImage(image, this.x, this.y, this.size, this.size);
-this.ctx.fill();
-
-};
-
-Note.prototype.updatePosition = function(){
-    this.y = this.y + this.speed;
-}
-
-Note.prototype.isInsideScreen = function(){
-    return this.y + this.size /2 < this.canvas.height;
-}
 
